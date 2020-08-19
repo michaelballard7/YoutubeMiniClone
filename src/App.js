@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'; 
+import SearchBar from './components/SearchBar'
+import youtubeApi from './api_config/youtube_api'
+import VideoList from './components/VideoList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const PUBLIC_KEY = 'AIzaSyC_vAtA0Klngt-HwaHc68gBvz6hzUtXA-k'
+
+class App extends React.Component {
+	
+
+	state = {
+		videoList: []
+	}
+
+
+
+	getSearchTerm = async (term) => {
+		let data = await youtubeApi.get('/search', {
+				params: {
+			        q: term,
+			        part: "snippet",
+			        type: 'video',
+			        maxResults: 5,
+			        key: PUBLIC_KEY
+				 }
+			})
+		this.setState({videoList:data.data.items})
+	};
+
+	render(){
+		
+		return (
+			<div className="ui container">
+				<SearchBar searchTerm={this.getSearchTerm}/>
+				<h1>Hello World</h1>
+				<VideoList videos={this.state.videoList} />
+			</div>
+			
+			)
+	}
 }
+
+
 
 export default App;
