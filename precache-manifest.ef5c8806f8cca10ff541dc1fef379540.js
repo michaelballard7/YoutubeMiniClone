@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e874734386fc691ae718f5665aaa6c27",
+    "revision": "b18c0f969ecf32dff915d620f305d918",
     "url": "/YoutubeMiniClone/index.html"
   },
   {
