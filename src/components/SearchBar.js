@@ -32,6 +32,7 @@ class SearchBar extends Component {
 							value={this.state.searchTerm} 
 							onChange={this.formChangeHandler} 
 							type="text"
+							placeholder="Search MiniTube...."
 						 />
 					</div>
 				</form>
